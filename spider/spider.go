@@ -1,7 +1,14 @@
 package spider
 
+import "time"
+
+// company code
 type Company int
 
+// status code
+type Status int
+
+// Company list
 const (
 	Cj = iota
 	Kpost
@@ -10,14 +17,28 @@ const (
 	Lotte
 )
 
+// Parcel status code
+const (
+	In = iota
+	Pickup
+	Upper
+	Down
+	Ready
+	Complete
+	NotYet
+)
+
 type Parcel struct {
 	Type    Company
 	Traking string
 }
 
 type Tracker struct {
-	Status      int
-	TrackingLog struct {
+	Status      Status
+	TrackingLog []struct {
+		Date     time.Time
+		Location string
+		Status   Status
 	}
 }
 
